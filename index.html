@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DPI Portal</title>
+  <!-- Vincula tu CSS principal -->
+  <link rel="stylesheet" href="/pagina principal/css/styles.css">
+</head>
+<body>
+
+<!-- ENCABEZADO -->
+<header class="header">
+
+  <!-- Sección superior (logo + DPI a la izquierda, accesibilidad + 911 + DPI MÁS CERCANO + BUSCAR a la derecha) -->
+  <div class="header-top">
+    <!-- Bloque Izquierdo: Logo, barra azul, texto “DPI” -->
+    <div class="left-brand">
+      <img class="dpi-logo" src="/pagina principal/Logo de la DPI/DPI.png" alt="Logo DPI">
+      <div class="yellow-bar"></div>
+      <div class="dpi-siglas">
+        <h2>DPI</h2>
+        <span class="dpi-full-name">DIRECCION POLICIAL DE INVESTIGACIONES</span>
+      </div>
+    </div>
+
+    <!-- Bloque Derecho: Accesibilidad, 911, Botón DPI MÁS CERCANO, Menú Hamburguesa -->
+    <div class="header-options">
+      <span class="accessibility" id="btnAccesibilidad">ACCESIBILIDAD</span>
+      <span class="contact" id="btnLlamada911">📞 911</span>
+      <!-- Botón que abre el modal de “DPI MÁS CERCANO” -->
+      <button id="btnSeleccionarDPI" class="location">📍 DPI MÁS CERCANO</button>
+
+      <!-- Menú hamburguesa -->
+      <div class="menu-container">
+        <div class="menu-button" onclick="toggleMenu()">☰ BUSCAR</div>
+        <nav class="menu" id="menu">
+          <ul>
+            <li><a href="/pagina principal/index.html">Inicio</a></li>
+            <li><a href="/personas desaparesidas/buscados/indexbuscados.html">Los Más Buscados</a></li>
+            <li><a href="#">Noticias</a></li>
+            <li><a href="#">Historias</a></li>
+            <li><a href="#">Blog de Noticias</a></li>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Comunicados de Prensa</a></li>
+            <li><a href="#">Acerca de</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra de navegación principal (INICIO, NOSOTROS, SERVICIOS, etc.) -->
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="/pagina principal/index.html">INICIO</a></li>
+      <li><a href="/Nosotros/index.html">NOSOTROS</a></li>
+      <li><a href="/servicios/index.html">SERVICIOS</a></li>
+      <li><a href="/personas desaparesidas/index.html">DPI BUSCA</a></li>
+      <li><a href="/Noticias/Index.html">PRENSA</a></li>
+      <li>
+        <a href="https://www.interpol.int/es/Quienes-somos/Paises-miembros/Las-Americas/HONDURAS"
+           target="_blank">
+          INTERPOL
+        </a>
+      </li>
+    </ul>
+  </nav>
+ <!-- Barra amarilla debajo del header-top -->
+ <div class="top-bar"></div>
+
+  <!-- SECCIÓN / CONTENEDOR DONDE SE MOSTRARÁ EL MAPA INCRUSTADO -->
+<section id="mapSection">
+  <!-- Aquí se inyecta el iframe con la URL embed -->
+  <div id="mapContainer" style="width: 100%; max-width: 800px; margin: 20px auto;"></div>
+</section>
+
+<!-- MODAL OVERLAY para seleccionar DPI MÁS CERCANO -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-content">
+    <h2>Selecciona tu ubicación</h2>
+
+    <!-- Select de Departamento -->
+    <label for="selectDepartamento">Departamento:</label>
+    <select id="selectDepartamento">
+      <option value="">-- Selecciona --</option>
+      <!-- Se llena dinámicamente con JS -->
+    </select>
+
+    <!-- Select de Municipio -->
+    <label for="selectMunicipio">Municipio/Localidad:</label>
+    <select id="selectMunicipio" disabled>
+      <option value="">-- Primero elige un departamento --</option>
+      <!-- Se llena dinámicamente con JS -->
+    </select>
+
+    <!-- Botones del modal -->
+    <div class="modal-buttons">
+      <!-- BOTÓN 1: Si aún deseas abrir en Google Maps -->
+      <button id="btnVerMapa">Ver en Google Maps</button>
+
+      <!-- BOTÓN 2 (OPCIONAL): Mostrar en la misma página, 
+           usando la función mostrarMapa(url). 
+           Si lo deseas, inclúyelo.
+      <button id="btnMostrarMapa">Mostrar en la Página</button>
+      -->
+
+      <!-- Botón para cerrar el modal -->
+      <button id="btnCerrarModal">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+
+</header>
+<!-- FIN ENCABEZADO -->
+
+<!-- CARRUSEL PRINCIPAL / SLIDER -->
+<section class="carousel">
+  <div class="carousel-container">
+    <!-- Slide 1 -->
+    <div class="carousel-slide active">
+      <!-- Texto a la izquierda -->
+      <div class="slide-text">
+        <h2>DPI captura a comerciante...</h2>
+        <p>La captura se llevó a cabo por...</p>
+        <button class="btn-main"
+          onclick="window.location.href='https://www.hch.tv/2025/01/11/dpi-captura...'">
+          Ver más
+        </button>
+      </div>
+      <!-- Imagen a la derecha -->
+      <div class="slide-image">
+        <img src="/pagina principal/nuevas noticiasç/dpin1.png" alt="Helicóptero y personal PDI">
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-slide">
+      <div class="slide-text">
+        <h2>En menos de 12 horas, DPI arresta...</h2>
+        <p>En respuesta a una formal denuncia...</p>
+        <button class="btn-main"
+          onclick="window.location.href='https://www.latribuna.hn/2025/01/14/en-menos-de-12-horas-dpi...'">
+          Ver más
+        </button>
+      </div>
+      <div class="slide-image">
+        <img src="/pagina principal/nuevas noticiasç/dpin2.jpg" alt="Ejemplo Slide 2">
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-slide">
+      <div class="slide-text">
+        <h2>DPI arresta a una mujer...</h2>
+        <p>La Dirección Policial de Investigaciones (DPI)...</p>
+        <button class="btn-main"
+          onclick="window.location.href='https://www.latribuna.hn/2025/01/13/dpi-arresta...'">
+          Ver más
+        </button>
+      </div>
+      <div class="slide-image">
+        <img src="/pagina principal/nuevas noticiasç/dpin3.jpg" alt="Ejemplo Slide 3">
+      </div>
+    </div>
+  </div>
+
+  <!-- Flechas de navegación -->
+  <button class="nav-arrow prev">&#10094;</button>
+  <button class="nav-arrow next">&#10095;</button>
+
+  <!-- Indicadores (bullets) -->
+  <div class="carousel-indicators">
+    <span class="dot active" data-slide="0"></span>
+    <span class="dot" data-slide="1"></span>
+    <span class="dot" data-slide="2"></span>
+  </div>
+</section>
+<!-- FIN CARRUSEL -->
+
+
+<!-- SECCIÓN con 3 columnas (Denuncias, Trámites, Derecha) -->
+<main class="main-container">
+  <!-- Columna Izquierda -->
+  <div class="outer-card">
+    <div class="info-box">
+      <div class="info-box-content">
+        <h2>¿Cómo hacer una denuncia?</h2>
+        <p>De forma segura</p>
+        <hr />
+        <button class="btn-primary">Mas Informacion</button>
+      </div>
+      <div class="info-footer">
+        <span>Lugares donde puedes denunciar</span>
+        <span class="arrow-right">&#10095;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna Central (Trámites) -->
+  <div class="tramites-box">
+    <h2>Trámites</h2>
+    <div class="tramites-opciones">
+      <div class="tramite-item">
+        <h3>Cita para Registro Balistico</h3>
+        <button class="btn-secondary">Realizar</button>
+      </div>
+      <div class="tramite-item">
+        <h3>Permiso de Portación de Armas</h3>
+        <button class="btn-secondary">Realizar</button>
+      </div>
+      <div class="tramite-item">
+        <h3>Limpieza de Antecedentes</h3>
+        <button class="btn-secondary">Realizar</button>
+      </div>
+      <div class="tramite-item">
+        <h3>Servicios Periciales</h3>
+        <button class="btn-secondary">Realizar</button>
+      </div>
+      <div class="tramite-item">
+        <h3>Limpieza de Antecedentes</h3>
+        <button class="btn-secondary">Realizar</button>
+      </div>
+      <div class="tramite-item">
+        <h3>Servicios Periciales</h3>
+        <button class="btn-secondary">Realizar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Columna Derecha -->
+  <aside class="derecha-box">
+    <div class="control-antidrogas">
+      <h2>Control Interno Antidrogas</h2>
+      <span class="arrow-right">➔</span>
+    </div>
+    <div class="personas-extraviadas">
+      <h3>Personas extraviadas</h3>
+      <div class="slider-extraviadas">
+        <img src="/pagina principal/desaparecidas/1.webp" alt="Persona 1">
+        <img src="/pagina principal/desaparecidas/2.jfif" alt="Persona 2">
+        <img src="/pagina principal/desaparecidas/3.jfif" alt="Persona 3">
+      </div>
+      <div class="dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+      </div>
+    </div>
+  </aside>
+</main>
+<!-- FIN SECCIÓN 3 COLUMNAS -->
+
+
+<!-- SECCIÓN “En Desarrollo” -->
+<div class="development-bg">
+  <section class="development-section">
+    <h2>En Desarrollo</h2>
+    <div class="dev-container">
+
+      <!-- Tarjetas a la izquierda -->
+      <div class="dev-cards">
+        <!-- Tarjeta 1 -->
+        <article class="dev-card">
+          <div class="dev-card-header">
+            <h3>Celebración de los Ascensos</h3>
+            <p class="date">10-01-2025</p>
+            <button class="btn-categoria">Campaña</button>
+          </div>
+          <div class="dev-card-image">
+            <img src="/pagina principal/IMAGEN/10-1-768x512.jpg" alt="Fuego Cero">
+          </div>
+        </article>
+
+        <!-- Tarjeta 2 -->
+        <article class="dev-card">
+          <div class="dev-card-header">
+            <h3>278 Aniversario de la Virgen de Suyapa</h3>
+            <p class="date">24-01-2025</p>
+            <button class="btn-categoria">Campaña</button>
+          </div>
+          <div class="dev-card-image">
+            <img src="/pagina principal/IMAGEN/virgen de suyapa.jpg" alt="Recomendaciones Verano">
+          </div>
+        </article>
+      </div>
+
+      <!-- Tabs a la derecha -->
+      <aside class="tabs-container">
+        <ul class="tabs-header">
+          <li class="tab-btn active" data-tab="campanias">Campañas</li>
+          <li class="tab-btn" data-tab="podcast">Podcast</li>
+        </ul>
+        <div class="tabs-content">
+          <!-- Panel Campañas -->
+          <div class="tab-panel active" id="campanias">
+            <div class="campania-item">
+              <h4>Detengamos la violencia a tiempo</h4>
+              <p class="date">07-11-2022</p>
+              <img src="/pagina principal/IMAGEN/dpi4.jpeg" alt="Alto No Más" />
+              <button class="btn-vermas">Ver más</button>
+            </div>
+            <div class="campania-item">
+              <h4>Campaña X</h4>
+              <p class="date">05-09-2022</p>
+              <img src="/pagina principal/IMAGEN/dpi6.jpg" alt="Campaña X" />
+              <button class="btn-vermas">Ver más</button>
+            </div>
+          </div>
+          <!-- Panel Podcast -->
+          <div class="tab-panel" id="podcast">
+            <div class="podcast-item">
+              <h4>Episodio 1: Presentación DPI</h4>
+              <button class="btn-vermas">Escuchar</button>
+            </div>
+            <div class="podcast-item">
+              <h4>Episodio 2: Prevención de Delitos en Redes</h4>
+              <button class="btn-vermas">Escuchar</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </section>
+</div>
+<!-- FIN SECCIÓN “En Desarrollo” -->
+
+
+<!-- SECCIÓN “Conoce a la DPI” -->
+<main class="dpi-section">
+  <h2>Conoce a la DPI</h2>
+  <div class="dpi-container">
+    <!-- Columna Izquierda (tarjetas) -->
+    <div class="dpi-left">
+      <!-- Tarjeta 1: HISTORIA -->
+      <article class="dpi-card">
+        <div class="dpi-card-text">
+          <h3>HISTORIA</h3>
+          <hr />
+          <p>Línea de Tiempo, Departamento 18, Unidades con Historia.</p>
+          <button class="btn-main">Ver más</button>
+        </div>
+        <div class="dpi-card-img">
+          <img src="/pagina principal/historia de honduras/DPI_Honduras.png" alt="Historia">
+        </div>
+      </article>
+
+      <!-- Tarjeta 2: ESPECIALIDADES -->
+      <article class="dpi-card">
+        <div class="dpi-card-text">
+          <h3>ESPECIALIDADES</h3>
+          <hr />
+          <p>Para cumplir nuestra misión de garantizar la seguridad y protección...</p>
+          <button class="btn-main">Ver más</button>
+        </div>
+        <div class="dpi-card-img">
+          <img src="/pagina principal/Laboratorio/IMG_6716-copia-1024x683.jpg" alt="Unidades Especializadas">
+        </div>
+      </article>
+    </div>
+
+    <!-- Columna Derecha (accesos directos) -->
+    <aside class="dpi-right">
+      <h3>Accesos directos</h3>
+      <ul class="accesos-list">
+        <li>
+          <a href="/Registro Balistica/index.html">
+            Requisitos Para Registro Balistico
+            <span>&#10095;</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Requisitos para la Limpieza de Antecedentes
+            <span>&#10095;</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Código de Ética
+            <span>&#10095;</span>
+          </a>
+        </li>
+        <!-- Agrega más accesos según necesites -->
+      </ul>
+    </aside>
+  </div>
+</main>
+<!-- FIN SECCIÓN “Conoce a la DPI” -->
+
+
+<!-- SECCIÓN de Transparencia (tarjetas/slider) -->
+<div class="transparency-bg">
+  <section class="transparency-section">
+    
+    <div class="transparency-cards-container">
+      <!-- Tarjeta 1 -->
+      <article class="transparency-card active">
+        <h3>Transparencia Activa</h3>
+        <p>Ley de Transparencia</p>
+      </article>
+      <!-- Tarjeta 2 -->
+      <article class="transparency-card">
+        <h3>Solicitud de Información</h3>
+        <p>Solicita tu Informacion</p>
+      </article>
+      <!-- Tarjeta 3 -->
+      <article class="transparency-card">
+        <h3>Histórico</h3>
+        <p>Transparencia Activa 2015-2025</p>
+      </article>
+      <!-- Tarjeta 4 -->
+      <article class="transparency-card">
+        <h3>Compromiso</h3>
+        <p>Gestión Institucional</p>
+      </article>
+    </div>
+    <!-- Indicadores (dots) -->
+    <div class="transparency-dots">
+      <span class="dot active" data-index="0"></span>
+      <span class="dot" data-index="1"></span>
+      <span class="dot" data-index="2"></span>
+      <span class="dot" data-index="3"></span>
+    </div>
+  </section>
+</div>
+<!-- FIN SECCIÓN Transparencia -->
+
+
+<!-- FOOTER PRINCIPAL -->
+<footer class="footer-area">
+  <!-- Parte superior (información en columnas) -->
+  <div class="footer-top">
+    <!-- Columna 1 -->
+    <div class="footer-col">
+      <h4>Oficina Principal</h4>
+      <p>Colonia Kennedy, Primera entrada</p>
+      <h5>Número telefónico</h5>
+      <p>(+504)XXXX-XXXX</p>
+      <h5>Síguenos en:</h5>
+      <div class="social-icons-inline">
+        <a href="https://www.facebook.com/dpihonduras/"><img src="/pagina principal/iconos/FACE1.png" alt="Facebook"></a>
+        <a href="https://x.com/dpi_honduras"><img src="/pagina principal/iconos/twitter_5969020.png" alt="X (Twitter)"></a>
+        <a href="#"><img src="/pagina principal/iconos/instagram_2111463.png" alt="Instagram"></a>
+        <a href="#"><img src="/pagina principal/iconos/youtube_2504965.png" alt="YouTube"></a>
+        <a href="#"><img src="/pagina principal/iconos/tik-tok.png" alt="TikTok"></a>
+      </div>
+    </div>
+
+    <!-- Columna 2 -->
+    <div class="footer-col">
+      <h4>Links de interés</h4>
+      <ul>
+        <li><a href="https://www.google.com/maps/search/Tegucigalpa+dpi/@14.0773441,-87.2068558,14z?entry=ttu&g_ep=EgoyMDI1MDEyMi4wIKXMDSoASAFQAw%3D%3D"
+        >Mapa del sitio</a></li>
+        <li><a href="/Registro Balistica/index.html">Requisitos para Registro Balístico</a></li>
+        <li><a href="#">Departamento de Denuncia</a></li>
+      </ul>
+    </div>
+
+    <!-- Columna 3 -->
+    <div class="footer-col">
+      <h4>Más enlaces</h4>
+      <ul>
+        <li><a href="https://www.mp.hn/">Ministerio Público</a></li>
+        <li><a href="https://policianacional.gob.hn/">Policía Nacional</a></li>
+        <li><a href="https://www.waze.com/es-419/live-map/directions/hn/departamento-de-francisco-morazan/tgu/estacion-policial-core-7?to=place.ChIJAWH3ujKjb48RQKo8C0cdgKk">Centro Integrado</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Parte inferior -->
+  <div class="footer-bottom">
+    <p>
+      www.DPI.gob | Condiciones de uso y políticas de privacidad del sitio | Dirección Policial de Investigaciones
+    </p>
+  </div>
+
+  <!-- Barra flotante de redes (vertical, cierra con la X) -->
+  <div class="floating-social-bar">
+    <a href="https://www.facebook.com/dpihonduras/" class="social-btn fb">
+      <img src="/pagina principal/iconos/FACE1.png" alt="Facebook">
+    </a>
+    <a href="https://x.com/dpi_honduras" class="social-btn x">
+      <img src="/pagina principal/iconos/twitter_5969020.png" alt="X (Twitter)">
+    </a>
+    <a href="#" class="social-btn ig">
+      <img src="/pagina principal/iconos/instagram_2111463.png" alt="Instagram">
+    </a>
+    <a href="#" class="social-btn yt">
+      <img src="/pagina principal/iconos/youtube_2504965.png" alt="YouTube">
+    </a>
+    <a href="#" class="social-btn tk">
+      <img src="/pagina principal/iconos/tik-tok.png" alt="TikTok">
+    </a>
+    <!-- Botón de cerrar barra flotante -->
+    <a href="#" class="social-btn close">
+      ✕
+    </a>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="/pagina principal/jv/script.js"></script>
+</body>
+</html>
